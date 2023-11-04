@@ -1,0 +1,13 @@
+{
+  "domain": "homecan",
+  "name": "HomeCAN",
+  "codeowners": "@RaBa64",
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/RaBa64/HA-HomeCAN/tree/HomeCAN/homeassistant/components/homecan",
+  "homekit": {},
+  "iot_class": "local_polling",
+  "requirements": [],
+  "ssdp": [],
+  "zeroconf": []
+}
