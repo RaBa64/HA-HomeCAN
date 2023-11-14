@@ -1,6 +1,4 @@
-"""Config flow for HomeCAN integration."""
-# HomeCAN integration, 2023 by Ralf Bauer
-
+"""Config flow for Test2 integration."""
 from __future__ import annotations
 
 import logging
@@ -12,23 +10,32 @@ from homeassistant import config_entries
 from homeassistant.core import HomeAssistant
 from homeassistant.data_entry_flow import FlowResult
 from homeassistant.exceptions import HomeAssistantError
+from homeassistant.const import (
+    CONF_HOST,
+    CONF_USERNAME,
+    CONF_PASSWORD,
+    CONF_PORT,
+    CONF_TIMEOUT,
+)
 
 from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 
+# data schema to the data
 STEP_USER_DATA_SCHEMA = vol.Schema(
     {
-        vol.Required("host"): str,
-        vol.Required("username"): str,
-        vol.Required("password"): str,
+        vol.Required(CONF_HOST): str,
+        vol.Required(CONF_USERNAME): str,
+        vol.Required(CONF_PASSWORD): str,
     }
 )
 
 
 class PlaceholderHub:
     """Placeholder class to make tests pass.
-    Remove this placeholder class and replace with things from your PyPI package.
+
+    TODO Remove this placeholder class and replace with things from your PyPI package.
     """
 
     def __init__(self, host: str) -> None:
@@ -42,6 +49,7 @@ class PlaceholderHub:
 
 async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str, Any]:
     """Validate the user input allows us to connect.
+
     Data has the keys from STEP_USER_DATA_SCHEMA with values provided by the user.
     """
     # validate the data can be used to set up a connection.
@@ -52,9 +60,9 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
     #     your_validate_func, data["username"], data["password"]
     # )
 
-    hub = PlaceholderHub(data["host"])
+    hub = PlaceholderHub(data[CONF_HOST])
 
-    if not await hub.authenticate(data["username"], data["password"]):
+    if not await hub.authenticate(data[CONF_USERNAME], data[CONF_PASSWORD]):
         raise InvalidAuth
 
     # If you cannot connect:
@@ -67,7 +75,7 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
 
 
 class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
-    """Handle a config flow for HomeCAN."""
+    """Handle a config flow for Test2."""
 
     VERSION = 1
 

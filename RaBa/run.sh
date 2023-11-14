@@ -1,0 +1,2 @@
+hass -c config
+
